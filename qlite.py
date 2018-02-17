@@ -80,7 +80,7 @@ for row in rows:
 
     draw.text((teamfont_x, 690),tname, (0, 0, 0), font=teamfont)
     draw.text((135,195),cnum , (0, 0, 0), font=numfont)
-    draw.text((6825, 945), row[3], (0, 0, 0), font=idfont)
+    draw.text((6825, 945), row[3], (255, 255, 255), font=idfont)
 
     for i in lines:
         linew=draw.textsize(i,font=ifont)
