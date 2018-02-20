@@ -49,11 +49,11 @@ def printban():
     numfont = ImageFont.truetype("arialbold.ttf", 1000)
     idfont = ImageFont.truetype("wl.ttf", 130)
 
-    tname ="Team Radiance Racing"
-    cnum ="31"
-    address = "Pune,Maharashtra"
-    tid = "MAC0193"
-    inames ="Government College Of Engineering And Research"
+    tname ="Invader"
+    cnum ="35"
+    address = "Pune, Maharashtra "
+    tid = "MAC0216"
+    inames ="Marathwada Mitra Mandals Institute Of Technology"
     tname = tname.upper()
     # Opening the file gg.png
     imageFile = "banner.jpg"

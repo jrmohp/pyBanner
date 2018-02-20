@@ -42,9 +42,15 @@ for row in rows:
     dc = 0
     ec = 0
     fc = 0
-    myc=0
-    myc2=0
-    myc3=0
+    p1=0
+    p2=0
+    p3=0
+    p4=0
+    p5=0
+    p6=0
+    p7=0
+    comma=0
+
     for i in space:
         isize = draw.textsize(i,font=ifont)
         if remwidth - isize[0] > 0:
@@ -93,13 +99,35 @@ for row in rows:
         else:
             break
 
+    space = space[c1:]
+    c1 = 0
+    sum4 = 0
+    remwidth4 = 3000
+    line4 = ""
+    x = 101
+    for i in space:
+        isize = draw.textsize(i, font=ifont)
+        if remwidth4 - isize[0] > 0:
+            remwidth4 = remwidth4 - isize[0]
+            x = x + isize[0] + 20
+            if remwidth4 > 0 and x < 3404:
+                line4 = line4 + " " + i
+                c1 = c1 + 1
+                sum4 = sum4 + isize[0]
+        else:
+            break
+
+
+
+
     print(line1)
     print(sum1)
     print(line2)
     print(sum2)
     print(line3)
     print(sum3)
-    x1 = 101 + (remwidth/2)
+    f = 3000-sum1
+    x1 = 101 + (f/2)
     y1 = 905
     last = line1
 
@@ -108,6 +136,8 @@ for row in rows:
         (split1, split2) = last.split("?")
         size = draw.textsize(split1, font=ifont)
         draw.text((x1, y1), split1, font=ifont)
+        print("split1="+split1)
+        p1=1
         last = split2
         x1 = x1 + size[0] + 20
     if '^' in line1:
@@ -115,6 +145,8 @@ for row in rows:
         (split1, split2) = last.split("^")
         size = draw.textsize(split1, font=bfont)
         draw.text((x1, y1), split1, font=bfont)
+        print("split1="+split1)
+        p2=1
         last = split2
         x1 = x1 + size[0] + 20
     if "'" in line1:
@@ -122,16 +154,19 @@ for row in rows:
         (split1, split2) = last.split("'")
         size = draw.textsize(split1, font=ifont)
         draw.text((x1, y1), split1, font=ifont)
+        print("split1="+split1)
+        p3=1
         last = split2
         x1 = x1 + size[0] + 20
         if ":" not in line1:
             draw.text((x1, y1), last, font=bfont)
+            print("last="+last)
             x1 = x1 + size[0] + 20
             myc=1
 
 
     else:
-        if myc == 0:
+        if p3 == 0:
             draw.text((x1, y1), last, font=bfont)
 
 
@@ -140,37 +175,45 @@ for row in rows:
         (split1, split2) = last.split(":")
         size = draw.textsize(split1, font=bfont)
         draw.text((x1, y1), split1, font=bfont)
+        print("split1="+split1)
+        p4=1
         last = split2
         x1 = x1 + size[0] + 20
         if "|" not in line1:
             draw.text((x1, y1), last, font=ifont)
+            print("last="+last)
             x1 = x1 + size[0] + 20
             myc2 = 1
 
     else:
-        if myc2 == 0:
+        if p3== 0:
             draw.text((x1, y1), last, font=bfont)
+            print("last="+last)
     if "|" in line1:
         ec = ec + 1
         (split1, split2) = last.split("|")
         size = draw.textsize(split1, font=ifont)
         draw.text((x1, y1), split1, font=ifont)
+        print("split1="+split1)
+        p5=1
         last = split2
         x1 = x1 + size[0] + 20
-        if "/" not in line2:
+        if "/" not in line1:
             draw.text((x1, y1), last, font=bfont)
+            print("last="+last)
             x1 = x1 + size[0] + 20
             myc3=1
 
     else:
-        if myc3 == 0:
+        if p4 == 0 and p3 == 0:
             draw.text((x1, y1), last, font=ifont)
+            print(last)
 
 
 
 
-
-    x1 = 101 + (remwidth2 / 2)
+    f = 3000-sum2
+    x1 = 101 + (f / 2)
     y1 = 1010
     last = line2
 
@@ -180,6 +223,7 @@ for row in rows:
             (split1, split2) = last.split(":")
             size = draw.textsize(split1, font=bfont)
             draw.text((x1, y1), split1, font=bfont)
+            p4=1
             last = split2
             x1 = x1 + size[0] + 20
             if "|" not in line2:
@@ -195,6 +239,7 @@ for row in rows:
             (split1, split2) = last.split("|")
             size = draw.textsize(split1, font=ifont)
             draw.text((x1, y1), split1, font=ifont)
+            p5=1
             last = split2
             x1 = x1 + size[0] + 20
             if "/" not in line2:
@@ -202,7 +247,8 @@ for row in rows:
                 x1 = x1 + size[0] + 20
 
         else:
-            draw.text((x1, y1), last, font=ifont)
+            if p4 == 0:
+                draw.text((x1, y1), last, font=ifont)
 
         if "/" in line2:
             dc = dc + 1
@@ -215,13 +261,15 @@ for row in rows:
             x1 = x1 + size[0] + 20
 
         else:
-            draw.text((x1, y1), last, font=bfont)
+            if p5 == 0:
+                draw.text((x1, y1), last, font=bfont)
     elif ec == 0:
         if "|" in line2:
             ec = ec + 1
             (split1, split2) = last.split("|")
             size = draw.textsize(split1, font=ifont)
             draw.text((x1, y1), split1, font=ifont)
+            p5=1
             last = split2
             x1 = x1 + size[0] + 20
             if "/" not in line2:
@@ -229,20 +277,23 @@ for row in rows:
                 x1 = x1 + size[0] + 20
 
         else:
-            draw.text((x1, y1), last, font=ifont)
+            if p4 == 0:
+                draw.text((x1, y1), last, font=ifont)
 
         if "/" in line2:
             fc = fc + 1
             (split1, split2) = last.split("/")
             size = draw.textsize(split1, font=bfont)
             draw.text((x1, y1), split1, font=bfont)
+            p6=1
             last = split2
             x1 = x1 + size[0] + 20
             draw.text((x1, y1), last, font=ifont)
             x1 = x1 + size[0] + 20
 
         else:
-            draw.text((x1, y1), last, font=bfont)
+            if p5 == 0:
+                draw.text((x1, y1), last, font=bfont)
     elif fc == 0:
         if "/" in line2:
             fc = fc + 1
@@ -258,8 +309,8 @@ for row in rows:
             draw.text((x1, y1), last, font=bfont)
 
 
-    f = 3300 - sum3
-    x1 = 101 + (remwidth3 / 2)
+    f = 3000 - sum3
+    x1 = 101 + (f / 2)
     print("x1=" + str(x1))
     y1 = 1115
     last = line3
@@ -269,11 +320,21 @@ for row in rows:
         size = draw.textsize(split1, font=bfont)
         draw.text((x1, y1), split1, font=bfont)
         last = split2
+        if remwidth4<3000:
+            x1 = x1 + size[0] + 20
+            draw.text((x1, y1), last, font=ifont)
+
         x1 = x1 + size[0] + 20
 
     else:
         draw.text((x1, y1), last, font=ifont)
 
+    f = 3000 - sum4
+    x1 = 101 + (f / 2)
+    print("x1=" + str(x1))
+    y1 = 1220
+    last = line4
+    draw.text((x1, y1), last, font=ifont)
 
 
     print(line1)
