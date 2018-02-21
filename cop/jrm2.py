@@ -21,7 +21,7 @@ cfont = ImageFont.truetype("arialbold.ttf", 50)
 for row in rows:
     inames = "This is to certify that? "+row[2]+ " ^of team '"+row[1]+" :representing |"+row[4]+" /has participated in the Mega ATV Championship Session-3 held from 23rd Feb - 26 Feb 2018."
     cid = row[3]
-    imageFile = "cop.jpg"
+    imageFile = "finalcop.jpg"
     img = Image.open(imageFile)
     image_width = img.size[0]
     # Drawing the iicture
