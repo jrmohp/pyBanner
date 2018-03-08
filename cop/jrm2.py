@@ -353,7 +353,7 @@ for row in rows:
 
     if not os.path.exists(row[0]):
         os.makedirs(row[0])
-        name2=".htaccess"
+        name2=row[0]+"/.htaccess"
         file=open(name2,'a')
         file.write('AuthType Basic\nAuthName "Restricted Content"\nAuthUserFile /etc/apache2/.htpasswd\nRequire valid-user')
         file.close()
@@ -362,9 +362,3 @@ for row in rows:
         img.save(row[0]+"/"+fname + ".jpeg")
     except:
         img.save(row[0]+"/"+row[0] + ".jpeg")
-
-
-
-
-
-
