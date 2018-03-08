@@ -4,6 +4,7 @@ from PIL import ImageFont
 from PIL import Image
 from PIL import ImageDraw
 import textwrap
+import os
 
 
 conn = sqlite3.connect('certfinal2.db')
@@ -19,9 +20,9 @@ ifont = ImageFont.truetype("arial.ttf", 80)
 bfont = ImageFont.truetype("arialbold.ttf", 80)
 cfont = ImageFont.truetype("arialbold.ttf", 50)
 for row in rows:
-    inames = "This is to certify that? "+row[2]+ " ^of team '"+row[1]+" :representing |"+row[4]+" /has participated in the Mega ATV Championship Session-3 held from 23rd Feb - 26 Feb 2018."
+    inames = "This is to certify that? "+row[2]+ " ^of team '"+row[1]+" :representing |"+row[4]+" /has participated* in the Mega ATV Championship Session-3 held from 24th Feb - 26 Feb 2018 at Nashik, Maharashtra."
     cid = row[3]
-    imageFile = "finalcop.jpg"
+    imageFile = "final4.jpg"
     img = Image.open(imageFile)
     image_width = img.size[0]
     # Drawing the iicture
@@ -92,7 +93,7 @@ for row in rows:
         if remwidth3 - isize[0] > 0:
             remwidth3 = remwidth3 - isize[0]
             x = x + isize[0] + 20
-            if remwidth3 > 0 and x < 3404:
+            if remwidth3 > 0 and x < 3385:
                 line3 = line3 + " " + i
                 c1 = c1 + 1
                 sum3 = sum3 + isize[0]
@@ -128,14 +129,14 @@ for row in rows:
     print(sum3)
     f = 3000-sum1
     x1 = 101 + (f/2)
-    y1 = 905
+    y1 = 1010
     last = line1
 
     if '?' in line1:
         ac = ac + 1
         (split1, split2) = last.split("?")
         size = draw.textsize(split1, font=ifont)
-        draw.text((x1, y1), split1, font=ifont)
+        draw.text((x1, y1), split1, font=ifont,fill='black')
         print("split1="+split1)
         p1=1
         last = split2
@@ -214,7 +215,7 @@ for row in rows:
 
     f = 3000-sum2
     x1 = 101 + (f / 2)
-    y1 = 1010
+    y1 = 1115
     last = line2
 
     if dc == 0:
@@ -312,7 +313,7 @@ for row in rows:
     f = 3000 - sum3
     x1 = 101 + (f / 2)
     print("x1=" + str(x1))
-    y1 = 1115
+    y1 = 1220
     last = line3
     if "/" in line3:
         fc = fc + 1
@@ -332,7 +333,7 @@ for row in rows:
     f = 3000 - sum4
     x1 = 101 + (f / 2)
     print("x1=" + str(x1))
-    y1 = 1220
+    y1 = 1325
     last = line4
     draw.text((x1, y1), last, font=ifont)
 
@@ -348,10 +349,13 @@ for row in rows:
     print(sum1)
     fname = row[0] + "_" + row[2] + "_" + row[3]
     # Save the image with a new name
+
+    if not os.path.exists(row[0]):
+        os.makedirs(row[0])
     try:
-        img.save(fname + ".jpeg")
+        img.save(row[0]+"/"+fname + ".jpeg")
     except:
-        img.save(row[3] + ".jpeg")
+        img.save(row[0]+"/"+row[0] + ".jpeg")
 
 
 
