@@ -8,7 +8,7 @@ import os
 import sys
 
 
-conn = sqlite3.connect('certfinal2.db')
+conn = sqlite3.connect('certfinal22.db')
 
 
 print("Opened database successfully")
