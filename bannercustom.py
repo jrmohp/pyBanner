@@ -44,10 +44,10 @@ cursor.execute("SELECT A,B,C,D,E FROM public_treg")
 rows = cursor.fetchall()
 
 def printban():
-    teamfont = ImageFont.truetype("arialbold.ttf", 180)
-    ifont = ImageFont.truetype("arialbold.ttf", 130)
-    numfont = ImageFont.truetype("arialbold.ttf", 1000)
-    idfont = ImageFont.truetype("wl.ttf", 130)
+    teamfont = ImageFont.truetype("fonts/arialbold.ttf", 180)
+    ifont = ImageFont.truetype("fonts/arialbold.ttf", 130)
+    numfont = ImageFont.truetype("fonts/arialbold.ttf", 1000)
+    idfont = ImageFont.truetype("fonts/wl.ttf", 130)
 
     tname ="Invader"
     cnum ="35"
